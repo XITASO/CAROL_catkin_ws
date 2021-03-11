@@ -1,0 +1,38 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="robot_position" default="front"/>
+  <arg name="use_soft_gripper" default="false"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find youbot_gazebo)/worlds/printer_$(arg robot_position).sdf" unless="$(arg use_soft_gripper)"/>
+    <arg name="world_name" value="$(find youbot_gazebo)/worlds/printer_soft_$(arg robot_position).sdf" if="$(arg use_soft_gripper)"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro '$(find youbot_description)/robots/youbot_arm_only.urdf.xacro'" unless="$(arg use_soft_gripper)" />
+  <param name="robot_description"
+    command="$(find xacro)/xacro '$(find youbot_soft_description)/robots/youbot_arm_only.urdf.xacro'" if="$(arg use_soft_gripper)" />
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-urdf -model youbot -param robot_description -z 0.035
+      -J youbot::gripper_finger_joint_l 0.001
+      -J youbot::gripper_finger_joint_r 0.001"/>
+
+  <!-- ros_control youbot launch file -->
+  <include file="$(find youbot_control)/launch/youbot_control.launch" />
+
+</launch>
