@@ -1,0 +1,17 @@
+controller_list:
+  - name: youbot_arm_controller
+    joints:
+      - arm_joint_1
+      - arm_joint_2
+      - arm_joint_3
+      - arm_joint_4
+      - arm_joint_5
+  - name: gripper_controller
+    joints: 
+      - gripper_finger_joint_l
+      - gripper_finger_joint_r
+initial:  # Define initial robot poses.
+  - group: youbot_arm
+    pose: home
+  - group: gripper
+    pose: opened

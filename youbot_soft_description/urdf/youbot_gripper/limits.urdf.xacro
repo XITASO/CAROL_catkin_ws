@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- common properties -->
+	<xacro:property name="M_PI" value="3.1415926535897931" />
+        <xacro:property name="M_PI_2" value="1.57079632579" />
+        <xacro:property name="threshold" value="0.001" />
+
+	<!-- fingers limits, values are in meters -->
+	<xacro:property name="finger_joint" value="${0.023 / 2.0}" />	
+   
+	<!--xacro:property name="finger_joint_soft" value="${(0.035 - threshold) / 2.0}" /-->
+        <xacro:property name="finger_joint_soft" value="${(0.012) / 2.0}" />
+
+	<!--xacro:property name="finger_joint_soft" value="0.0028" /-->
+	
+</robot>

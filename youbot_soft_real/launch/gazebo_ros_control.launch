@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find youbot_soft_real)/config/gazebo_ros_control.yaml" command="load"/>
+    <rosparam file="$(find youbot_soft_real)/config/joint_states_initial.yaml" command="load"/>
+</launch>

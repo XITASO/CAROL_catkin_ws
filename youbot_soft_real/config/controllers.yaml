@@ -1,0 +1,15 @@
+controller_list:
+  - name: youbot_arm_controller
+    type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    joints:
+      - arm_joint_1
+      - arm_joint_2
+      - arm_joint_3
+      - arm_joint_4
+      - arm_joint_5
+initial:  # Define initial robot poses.
+  - group: youbot_arm
+    pose: home
+  - group: gripper
+    pose: default

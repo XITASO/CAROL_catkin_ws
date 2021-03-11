@@ -1,0 +1,11 @@
+#these values are not the same as in pose 'home' for the robot because we want to have a difference to the home pose
+#When we have a difference the actual home joint values will be published to gazebo so that we have a defined initial state
+zeros:
+  arm_joint_1: 0.0101
+  arm_joint_2: 0.0101
+  arm_joint_3: -0.0158
+  arm_joint_4: 0.0222
+  arm_joint_5: 0.211 
+  gripper_finger_joint_l: 0.009
+  gripper_finger_joint_r: 0.009 
+

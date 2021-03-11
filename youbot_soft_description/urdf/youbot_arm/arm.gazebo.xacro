@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="youbot_arm_gazebo" params="name">
+
+		<gazebo reference="${name}_link_0">
+			<material value="youbot/DarkGrey" />
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+
+		<gazebo reference="${name}_link_1">
+			<!--<material value="youbot/Orange" />-->
+			<turnGravityOff>false</turnGravityOff>
+			<sensor name="/youbot_link_1_contact_sensor" type="contact">
+				<always_on>true</always_on>
+				<contact>
+					<collision>arm_link_1_collision</collision>
+				</contact>
+				<plugin name="${name}_link_1_plugin" filename="libgazebo_ros_bumper.so">
+					<bumperTopicName>/youbot/link_1_contact</bumperTopicName>
+					<frameName>world</frameName>
+				 </plugin>
+			</sensor>
+
+		</gazebo>
+
+		<gazebo reference="${name}_link_2">
+			<!--<material value="youbot/Orange" />-->
+			<turnGravityOff>false</turnGravityOff>
+			<sensor name="/youbot_link_2_contact_sensor" type="contact">
+				<always_on>true</always_on>
+				<contact>
+					<collision>arm_link_2_collision</collision>
+				</contact>
+				<plugin name="${name}_link_2_plugin" filename="libgazebo_ros_bumper.so">
+					<bumperTopicName>/youbot/link_2_contact</bumperTopicName>
+					<frameName>world</frameName>
+				 </plugin>
+			</sensor>
+
+		</gazebo>
+
+		<gazebo reference="${name}_link_3">
+			<!--<material value="youbot/Orange" />-->
+			<turnGravityOff>false</turnGravityOff>
+			<sensor name="/youbot_link_3_contact_sensor" type="contact">
+				<always_on>true</always_on>
+				<contact>
+					<collision>arm_link_3_collision</collision>
+				</contact>
+				<plugin name="${name}_link_3_plugin" filename="libgazebo_ros_bumper.so">
+					<bumperTopicName>/youbot/link_3_contact</bumperTopicName>
+					<frameName>world</frameName>
+				 </plugin>
+			</sensor>
+
+		</gazebo>
+
+		<gazebo reference="${name}_link_4">
+			<!--<material value="youbot/Orange" />-->
+			<turnGravityOff>false</turnGravityOff>
+			<sensor name="/youbot_link_4_contact_sensor" type="contact">
+				<always_on>true</always_on>
+				<contact>
+					<collision>arm_link_4_collision</collision>
+				</contact>
+				<plugin name="${name}_link_4_plugin" filename="libgazebo_ros_bumper.so">
+					<bumperTopicName>/youbot/link_4_contact</bumperTopicName>
+					<frameName>world</frameName>
+				 </plugin>
+			</sensor>
+		</gazebo>
+
+		<gazebo reference="${name}_link_5">
+			<!--<material value="youbot/DarkGrey" />-->
+			<turnGravityOff>false</turnGravityOff>
+			<sensor name="/youbot_link_5_contact_sensor" type="contact">
+				<always_on>true</always_on>
+				<contact>
+					<collision>arm_link_5_collision</collision>
+				</contact>
+				<plugin name="${name}_link_5_plugin" filename="libgazebo_ros_bumper.so">
+					<bumperTopicName>/youbot/link_5_contact</bumperTopicName>
+					<frameName>world</frameName>
+				 </plugin>
+			</sensor>
+		</gazebo>
+
+	</xacro:macro>
+
+</robot>
